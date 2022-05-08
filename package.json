@@ -1,0 +1,40 @@
+{
+  "name": "silverdevelopment",
+  "version": "1.0.0",
+  "description": "devsilver alawiyeh com",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "watch": "nodemon --exec electron .",
+    "reset": "git reset --hard",
+    "buildit": "electron-builder -w",
+    "win-cert": "electron-builder create-self-signed-cert -p silverdevelopment",
+    "release": "electron-builder -w -p onTagOrDraft"
+  },
+  "repository": "https://github.com/falaouie/silverdevelopment",
+  "homepage": "https://github.com/falaouie/silverdevelopment",
+  "author": "silverdevelopment",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^18.2.0",
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "electron-log": "^4.4.7",
+    "electron-updater": "^5.0.1"
+  },
+  "build": {
+    "appId": "com.alawiyeh.silverdevelopment",
+    "copyright": "alawiyeh silver systems",
+    "publish": {
+      "provider": "github",
+      "owner": "falaouie",
+      "repo": "silverdevelopment"
+    },
+    "win": {
+      "certificateFile": "privatefolder/silverdevelopment.pfx",
+      "certificatePassword": "",
+      "publisherName": "silverdevelopment"
+    }
+  }
+}
