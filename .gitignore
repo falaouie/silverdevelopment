@@ -1,3 +1,6 @@
-node_modules/
-dist/
-privatefolder/
+main.js
+node_modules
+dist
+privatefolder
+package-lock.json
+package.json

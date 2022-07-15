@@ -1,6 +1,7 @@
 // Modules
 const {app, BrowserWindow} = require('electron')
 const updater = require('./updater')
+const appMenu = require('./menu')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -14,6 +15,7 @@ function createWindow () {
 
   mainWindow = new BrowserWindow({
   //  width: 1000, height: 800,
+  backgroundColor: '#eceeee',
     show: false,
     webPreferences: {
       // --- !! IMPORTANT !! ---
@@ -24,11 +26,15 @@ function createWindow () {
     }
   })
 
-  // Load index.html into the new BrowserWindow
-  mainWindow.loadURL('http://devsilver.alawiyeh.com')
+  // Create main app menu
+  appMenu()
+
+  // PRODUCTION new BrowserWindow
+  // mainWindow.loadURL('http://silvercrumbs.alawiyeh.com')
 
   // Open DevTools - Remove for PRODUCTION!
   // mainWindow.webContents.openDevTools();
+  mainWindow.loadURL('http://devsilver.alawiyeh.com')
 
   // Listen for window being closed
   mainWindow.on('closed',  () => {
@@ -40,7 +46,11 @@ function createWindow () {
 }
 
 // Electron `app` is ready
-app.on('ready', createWindow)
+app.on('ready', () => {
+  createWindow()
+
+  mainWindow.on('closed', () => mainWindow = null)
+})
 
 // Quit when all windows are closed - (Not macOS - Darwin)
 app.on('window-all-closed', () => {
